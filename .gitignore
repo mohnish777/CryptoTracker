@@ -24,3 +24,4 @@ local.properties
 .idea/vcs.xml
 .idea/AugmentWebviewStateStore.xml
 .idea/inspectionProfiles/Project_Default.xml
+.idea/studiobot.xml

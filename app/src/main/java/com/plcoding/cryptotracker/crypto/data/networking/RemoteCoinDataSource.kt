@@ -1,6 +1,5 @@
 package com.plcoding.cryptotracker.crypto.data.networking
 
-import com.plcoding.cryptotracker.core.data.networking.HttpClientFactory
 import com.plcoding.cryptotracker.core.data.networking.constructUrl
 import com.plcoding.cryptotracker.core.data.networking.safeCall
 import com.plcoding.cryptotracker.core.domain.util.NetworkError

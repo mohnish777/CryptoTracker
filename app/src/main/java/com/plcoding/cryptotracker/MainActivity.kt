@@ -1,5 +1,6 @@
 package com.plcoding.cryptotracker
 
+import android.R.attr.top
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -17,6 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.plcoding.cryptotracker.core.presentation.util.observeAsEvents
 import com.plcoding.cryptotracker.core.presentation.util.toString
+import com.plcoding.cryptotracker.crypto.presentation.coin_detail.CoinDetailScreen
 import com.plcoding.cryptotracker.crypto.presentation.coin_list.CoinListEvent
 import com.plcoding.cryptotracker.crypto.presentation.coin_list.CoinListScreen
 import com.plcoding.cryptotracker.crypto.presentation.coin_list.CoinListState
@@ -47,13 +49,27 @@ class MainActivity : ComponentActivity() {
                         }
 
                     }
-                    CoinListScreen(
-                        state = state,
-                        modifier = Modifier.padding(
-                            top = innerPadding.calculateTopPadding(),
-                            bottom = innerPadding.calculateBottomPadding()
-                        )
-                    )
+
+                    when {
+                        state.selectedCoin !=null -> {
+                            CoinDetailScreen(
+                                state = state,
+                                modifier = Modifier
+                                    .padding(innerPadding)
+                            )
+                        }
+
+                        else -> {
+                            CoinListScreen(
+                                state = state,
+                                onAction = viewModel::onAction,
+                                modifier = Modifier.padding(
+                                    top = innerPadding.calculateTopPadding(),
+                                    bottom = innerPadding.calculateBottomPadding()
+                                )
+                            )
+                        }
+                    }
                 }
             }
         }

@@ -26,6 +26,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
 import com.plcoding.cryptotracker.BuildConfig
 import com.plcoding.cryptotracker.core.presentation.util.toString
+import com.plcoding.cryptotracker.crypto.domain.Coin
 import com.plcoding.cryptotracker.crypto.presentation.coin_list.components.CoinListItem
 import com.plcoding.cryptotracker.crypto.presentation.coin_list.components.previewCoin
 import com.plcoding.cryptotracker.crypto.presentation.models.toCoinUi
@@ -37,6 +38,7 @@ import kotlinx.coroutines.flow.emptyFlow
 @Composable
 fun CoinListScreen(
     state: CoinListState,
+    onAction: (CoinListAction) -> Unit,
     modifier: Modifier = Modifier,
 ) {
 
@@ -58,6 +60,7 @@ fun CoinListScreen(
                 CoinListItem(
                     coinUi = coinUi,
                     onClick = {
+                        onAction(CoinListAction.OnCoinClick(coinUi))
 
                     },
                     modifier = Modifier.fillMaxWidth()
@@ -85,6 +88,7 @@ private fun CoinListScreenPreview() {
                     )
                 }
             ),
+            onAction = {},
             modifier = Modifier.background(
                 MaterialTheme.colorScheme.background
             )
